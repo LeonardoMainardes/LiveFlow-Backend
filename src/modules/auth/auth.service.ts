@@ -5,15 +5,13 @@ import type { LoginSchema, RegisterSchema } from "./auth.schema"
 
 export class AuthService {
   async register(data: RegisterSchema) {
-    const exisitingUser = await prisma.user.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: {
         email: data.email,
       },
     })
 
-    if (exisitingUser) {
-      throw new Error("Email já cadastrado")
-    }
+    if (existingUser) throw new Error("Email já cadastrado")
 
     const passwordHash = await bcrypt.hash(data.password, 12)
 

@@ -21,6 +21,6 @@ export const authMiddleware = async (
 
     request.user = result.data
   } catch (_error) {
-    reply.status(401).send({ message: "Invalid Token" })
+    return reply.status(401).send({ message: "Invalid Token" })
   }
 }

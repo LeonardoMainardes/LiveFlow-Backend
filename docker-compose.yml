@@ -20,7 +20,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: "postgresql://postgres:123@postgres:8888/syncflow"
+      DATABASE_URL: "postgresql://postgres:123@postgres:5432/syncflow"
 
 volumes:
   syncflow_data:
