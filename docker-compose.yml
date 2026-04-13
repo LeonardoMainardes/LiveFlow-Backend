@@ -3,6 +3,8 @@ services:
     image: postgres:16
     container_name: syncflow-db
     restart: always
+    ports:
+      - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
@@ -18,7 +20,7 @@ services:
     depends_on:
       - postgres
     environment:
-      DATABASE_URL: "postgresql://postgres:123@postgres:5432/syncflow"
+      DATABASE_URL: "postgresql://postgres:123@postgres:8888/syncflow"
 
 volumes:
   syncflow_data:

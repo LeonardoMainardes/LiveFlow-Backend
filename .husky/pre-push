@@ -1,0 +1,5 @@
+echo "husky pre-push: bun run build"
+bun run build
+
+echo "husky pre-push: bun run lint"
+bun run lint
