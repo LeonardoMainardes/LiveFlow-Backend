@@ -15,10 +15,12 @@ export const app = Fastify({
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
-app.setErrorHandler((error, request, reply) => {
+app.setErrorHandler((error, _request, reply) => {
   app.log.error(error)
+  //@ts-expect-error
   const statusCode = error.statusCode ?? 500
   reply.status(statusCode).send({
+    //@ts-expect-error
     message: error.message || "Internal Server Error",
   })
 })

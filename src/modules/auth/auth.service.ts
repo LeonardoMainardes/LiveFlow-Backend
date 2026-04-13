@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs"
-import jwt from "jsonwebtoken"
 import { signToken } from "../../lib/jwt"
 import { prisma } from "../../lib/prisma"
 import type { LoginSchema, RegisterSchema } from "./auth.schema"

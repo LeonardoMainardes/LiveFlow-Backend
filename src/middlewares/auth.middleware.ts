@@ -7,7 +7,7 @@ export const authMiddleware = async (
   request: FastifyRequest,
   reply: FastifyReply,
 ) => {
-  const token = request.headers["authorization"]?.split(" ")[1]
+  const token = request.headers.authorization?.split(" ")[1]
 
   if (!token) return reply.status(401).send({ message: "Access Denied" })
 
@@ -20,7 +20,7 @@ export const authMiddleware = async (
       return reply.status(400).send({ message: "Bad Request" })
 
     request.user = result.data
-  } catch (err) {
+  } catch (_error) {
     reply.status(401).send({ message: "Invalid Token" })
   }
 }
