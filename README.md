@@ -1,6 +1,6 @@
-# ⚙️ SyncFlow — Backend
+# ⚙️ LiveFlow — Backend
 
-API REST do projeto SyncFlow, construída com **Fastify**, **Prisma ORM** e **PostgreSQL**, rodando sobre **Bun** como runtime. Inclui documentação automática via Swagger, containerização com Docker e pipeline de qualidade com Biome + Husky + Commitlint.
+API REST do projeto LiveFlow, construída com **Fastify**, **Prisma ORM** e **PostgreSQL**, rodando sobre **Bun** como runtime. Inclui documentação automática via Swagger, containerização com Docker e pipeline de qualidade com Biome + Husky + Commitlint.
 
 > 🔗 Repositório do frontend: [SyncFlow-Frontend](https://github.com/LeonardoMainardes/SyncFlow-Frontend)
 
