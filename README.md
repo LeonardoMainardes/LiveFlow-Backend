@@ -2,7 +2,7 @@
 
 API REST do projeto LiveFlow, construída com **Fastify**, **Prisma ORM** e **PostgreSQL**, rodando sobre **Bun** como runtime. Inclui documentação automática via Swagger, containerização com Docker e pipeline de qualidade com Biome + Husky + Commitlint.
 
-> 🔗 Repositório do frontend: [SyncFlow-Frontend](https://github.com/LeonardoMainardes/SyncFlow-Frontend)
+> 🔗 Repositório do frontend: [LiveFlow-Frontend]()
 
 ---
 
@@ -40,8 +40,8 @@ API REST do projeto LiveFlow, construída com **Fastify**, **Prisma ORM** e **Po
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/LeonardoMainardes/SyncFlow-Backend.git
-cd SyncFlow-Backend
+git clone https://github.com/LeonardoMainardes/LiveFlow-Backend.git
+cd LiveFlow-Backend
 ```
 
 ### 2. Instale as dependências
@@ -64,7 +64,7 @@ O `.env.example` contém as variáveis necessárias:
 # Banco de dados
 DB_USER=
 DB_PASSWORD=
-DB_NAME=syncflow
+DB_NAME=LiveFlow
 
 # Prisma
 DATABASE_URL="postgresql://${DB_USER}:${DB_PASSWORD}@localhost:5432/${DB_NAME}"
@@ -108,29 +108,6 @@ docker-compose up --build
 |------------|-------|
 | API        | 8888  |
 | PostgreSQL | 5432  |
-
----
-
-## 📁 Estrutura do projeto
-
-```
-/
-├── src/
-│   ├── routes/        # Definição dos endpoints
-│   ├── controllers/   # Lógica das requisições
-│   ├── services/      # Regras de negócio
-│   └── server.ts      # Configuração do servidor Fastify
-├── prisma/
-│   └── schema.prisma  # Modelagem do banco de dados
-├── .cursor/rules/     # Regras do Cursor AI para o projeto
-├── .husky/            # Hooks de pre-commit
-├── .env.example       # Variáveis de ambiente (template — vai ao Git)
-├── .env               # Variáveis de ambiente (valores reais — no .gitignore)
-├── Dockerfile
-├── docker-compose.yml
-├── biome.json         # Config do linter/formatter
-└── commitlint.config.js
-```
 
 ---
 
