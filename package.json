@@ -1,5 +1,5 @@
 {
-  "name": "syncflow---backend",
+  "name": "liveflow-backend",
   "module": "index.ts",
   "type": "module",
   "private": true,
@@ -22,30 +22,31 @@
     ]
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.7",
-    "@commitlint/cli": "20.5.0",
-    "@commitlint/config-conventional": "20.5.0",
+    "@biomejs/biome": "2.5.2",
+    "@commitlint/cli": "21.2.0",
+    "@commitlint/config-conventional": "21.2.0",
     "@types/bun": "latest",
     "@types/jsonwebtoken": "9.0.10",
-    "@types/node": "25.5.0",
+    "@types/node": "26.1.0",
     "husky": "9.1.7",
-    "lint-staged": "16.4.0",
-    "prisma": "7.5.0",
-    "tsx": "4.21.0"
+    "lint-staged": "17.0.8",
+    "prisma": "7.8.0",
+    "tsx": "4.22.4"
   },
   "peerDependencies": {
-    "typescript": "5.9.3"
+    "typescript": "6.0.3"
   },
   "dependencies": {
     "@fastify/swagger": "9.7.0",
-    "@fastify/swagger-ui": "5.2.5",
-    "@prisma/adapter-pg": "7.6.0",
-    "@prisma/client": "7.5.0",
+    "@fastify/swagger-ui": "6.0.0",
+    "@prisma/adapter-pg": "7.8.0",
+    "@prisma/client": "7.8.0",
     "bcryptjs": "3.0.3",
-    "fastify": "5.8.4",
-    "fastify-type-provider-zod": "6.1.0",
+    "fastify": "5.9.0",
+    "fastify-type-provider-zod": "7.0.0",
     "jsonwebtoken": "9.0.3",
-    "zod": "4.3.6",
+    "socket.io": "4.8.3",
+    "zod": "4.4.3",
     "zod-to-json-schema": "3.25.2"
   }
 }

@@ -1,26 +1,33 @@
 services:
   postgres:
     image: postgres:16
-    container_name: syncflow-db
+    container_name: liveflow-db
     restart: always
     ports:
       - "5432:5432"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123
-      POSTGRES_DB: syncflow
+      POSTGRES_DB: liveflow
     volumes:
-      - syncflow_data:/var/lib/postgresql/data
+      - liveflow_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d liveflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
 
   api:
     build: .
-    container_name: syncflow-api
+    container_name: liveflow-api
     ports:
-      - "8888:8888"
+      - "8080:8080"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
-      DATABASE_URL: "postgresql://postgres:123@postgres:5432/syncflow"
+      DATABASE_URL: "postgresql://postgres:123@postgres:5432/liveflow"
+      JWT_SECRET: "7PLGwUncfpMOMWuENMe5DwSOFlRbSQb7vG3Fptnh+zI="
 
 volumes:
-  syncflow_data:
+  liveflow_data:

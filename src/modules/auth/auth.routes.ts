@@ -1,5 +1,5 @@
-import type { FastifyInstance } from "fastify"
 import * as z from "zod"
+import type { FastifyTypedInstance } from "../../lib/types"
 import { authMiddleware } from "../../middlewares/auth.middleware"
 import { AuthController } from "./auth.controller"
 import {
@@ -9,7 +9,7 @@ import {
   registerSchema,
 } from "./auth.schema"
 
-export async function authRoutes(app: FastifyInstance) {
+export async function authRoutes(app: FastifyTypedInstance) {
   const controller = new AuthController()
 
   app.post<{ Body: RegisterSchema }>(
@@ -27,6 +27,8 @@ export async function authRoutes(app: FastifyInstance) {
             }),
           }),
         },
+        description: "Register a new user",
+        tags: ["users"],
       },
     },
     (request, reply) => controller.register(request, reply),
@@ -45,6 +47,8 @@ export async function authRoutes(app: FastifyInstance) {
             }),
           }),
         },
+        description: "Login a user",
+        tags: ["users"],
       },
     },
     (request, reply) => controller.login(request, reply),
@@ -56,6 +60,11 @@ export async function authRoutes(app: FastifyInstance) {
       preHandler: authMiddleware,
       schema: {
         security: [{ bearerAuth: [] }],
+        headers: z.object({
+          authorization: z.string().min(1),
+        }),
+        description: "Get user information",
+        tags: ["users"],
       },
     },
     (request, reply) => controller.me(request, reply),

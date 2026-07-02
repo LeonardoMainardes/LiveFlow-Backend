@@ -1,11 +1,13 @@
-import swagger from "@fastify/swagger"
-import swaggerUI from "@fastify/swagger-ui"
+import { fastifySwagger } from "@fastify/swagger"
+import { fastifySwaggerUi } from "@fastify/swagger-ui"
 import Fastify from "fastify"
 import {
+  jsonSchemaTransform,
   serializerCompiler,
   validatorCompiler,
   type ZodTypeProvider,
 } from "fastify-type-provider-zod"
+import { errorHandler } from "./errors/errorHandler"
 import { appRoutes } from "./routes"
 
 export const app = Fastify({
@@ -15,19 +17,11 @@ export const app = Fastify({
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
 
-app.setErrorHandler((error, _request, reply) => {
-  app.log.error(error)
-  //@ts-expect-error
-  const statusCode = error.statusCode ?? 500
-  reply.status(statusCode).send({
-    //@ts-expect-error
-    message: error.message || "Internal Server Error",
-  })
-})
+app.setErrorHandler(errorHandler)
 
 app.decorateRequest("user")
 
-await app.register(swagger, {
+await app.register(fastifySwagger, {
   openapi: {
     components: {
       securitySchemes: {
@@ -39,14 +33,15 @@ await app.register(swagger, {
       },
     },
     info: {
-      title: "SyncFlow API",
+      title: "LiveFlow API",
       description: "Documentação da API",
       version: "1.0.0",
     },
   },
+  transform: jsonSchemaTransform,
 })
 
-await app.register(swaggerUI, {
+await app.register(fastifySwaggerUi, {
   routePrefix: "/docs",
   uiConfig: {
     docExpansion: "list",
